@@ -1,0 +1,5 @@
+---
+# defaults file for eturnal
+eturnal_secret: "r4nd0m_s|_|p3r+10nG"     # Shared secret 
+eturnal_ipv4: "{{ ansible_default_ipv4.address }}" # The server's public IPv4 address.
+eturnal_ipv6: "{{ ansible_default_ipv6.address }}" # The server's public IPv6 address (optional).

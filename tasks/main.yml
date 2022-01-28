@@ -1,0 +1,50 @@
+---
+# tasks file for eturnal
+
+- name: add debian key for eturnal
+  ansible.builtin.apt_key:
+    url: https://deb.eturnal.net/dists/stable/Release.gpg
+    state: present
+
+- name: add apt repo for eturnal
+  ansible.builtin.apt_repository:
+    repo: deb https://deb.eturnal.net stablei main 
+    state: present
+
+- name: update apt package cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: update all apt packages
+  ansible.builtin.apt:
+    upgrade: "dist"
+    name: "*"
+    state: latest
+
+- name: install eturnal via apt
+  ansible.builtin.apt:
+    name: eturnal
+    state: present
+
+- name: check if file exists
+  ansible.builtin.stat:
+    path: /etc/eturnal.yml
+  register: config_eturnal
+
+- name: rename old may exiting eturnal configuration
+  ansible.builtin.copy:
+    src: /etc/eturnal.yml
+    dest: "/etc/{{ ansible_date_time.date }}-backup_eturnal.yml"
+  when: config_eturnal.exists
+
+- name: create eturnal configurational yaml file
+  ansible.builtin.template:
+    src: config.j2
+    dest: /etc/eturnal.yml
+
+- name: eturnal should be start via systemd
+  ansible.builtin.systemd:
+    name: eturnal
+    state: started
+    enabled: yes
