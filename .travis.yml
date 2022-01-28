@@ -16,7 +16,7 @@ env:
 
 branches:
   only:
-    - master
+    - main 
 
 before_install:
   - sudo apt-get update -qq
