@@ -1,7 +1,7 @@
 eturnal debian
 ==============
 
-[![Build Status](https://api.travis-ci.com/therojam/ansible-role-eturnal.svg?branch=master)](https://travis-ci.org/therojam/ansible-role-eturnal) 
+[![Build Status](https://api.travis-ci.com/therojam/ansible-role-eturnal.svg?branch=main)](https://travis-ci.com/therojam/ansible-role-eturnal) 
 [![Ansible Galaxy](http://img.shields.io/badge/ansible__galaxy_eturnal_blue.svg)](https://galaxy.ansible.com/therojam/ansible_role_eturnal))
 
 This roles is for setting up eturnal a new stun/tunr server.
